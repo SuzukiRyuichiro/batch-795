@@ -25,6 +25,7 @@ def movie_scraper(url)
     parsed_page = Nokogiri::HTML(html_doc)
     # using css selectors, extract, year, title, storyline....
     # hash containing information about a movie
+    # Note: basically, for elements which can be found multiple times with a CSS selector, you can pinpoint to the one you want with index (in this case, all of them are first)
     {
         cast: parsed_page.search('.ezTgkS').first(3).map { |element| element.text },
         director: parsed_page.search('.ipc-metadata-list-item__list-content-item, .ipc-metadata-list-item__list-content-item--link').first.text,
